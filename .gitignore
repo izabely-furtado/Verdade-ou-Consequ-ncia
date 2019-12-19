@@ -1,0 +1,16 @@
+﻿################################################################################
+# Este arquivo .gitignore foi criado automaticamente pelo Microsoft(R) Visual Studio.
+################################################################################
+
+/WebCliente/ClientApp/node_modules
+/.vs
+/ApiCliente/bin/Debug/netcoreapp2.1
+/WebCliente/bin/Debug/netcoreapp2.1
+/JwtCore/bin/Debug/netcoreapp2.1
+/VerdadeConsequencia/bin/Debug/netcoreapp2.1
+/VerdadeConsequencia/bin/Debug/netcoreapp2.1
+
+/ApiCliente/bin/Release/netcoreapp2.1
+/WebCliente/bin/Release/netcoreapp2.1
+/JwtCore/bin/Release/netcoreapp2.1
+/VerdadeConsequencia/bin/Release/netcoreapp2.1
