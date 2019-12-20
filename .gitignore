@@ -10,7 +10,18 @@
 /VerdadeConsequencia/bin/Debug/netcoreapp2.1
 /VerdadeConsequencia/bin/Debug/netcoreapp2.1
 
+/ApiCliente/obj/Debug/netcoreapp2.1
+/WebCliente/obj/Debug/netcoreapp2.1
+/JwtCore/obj/Debug/netcoreapp2.1
+/VerdadeConsequencia/obj/Debug/netcoreapp2.1
+/VerdadeConsequencia/obj/Debug/netcoreapp2.1
+
 /ApiCliente/bin/Release/netcoreapp2.1
 /WebCliente/bin/Release/netcoreapp2.1
 /JwtCore/bin/Release/netcoreapp2.1
 /VerdadeConsequencia/bin/Release/netcoreapp2.1
+
+/ApiCliente/obj/Release/netcoreapp2
+/WebCliente/obj/Release/netcoreapp2.1
+/JwtCore/obj/Release/netcoreapp2.1
+/VerdadeConsequencia/obj/Release/netcoreapp2.1

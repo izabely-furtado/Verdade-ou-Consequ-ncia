@@ -11,36 +11,34 @@ using System.Linq;
 
 namespace VerdadeConsequencia.Services
 {
-    public class EnderecoService
+    public class OpcaoService
     {
 
-        public static Endereco Obter(int uuid)
+        public static Opcao Obter(int uuid)
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Enderecos.Where(a => a.id == uuid).First();
+                return ctx.Opcoes.Include(a => a.Verdade).Where(a => a.id == uuid).FirstOrDefault();
             }
         }
 
-        public static List<Endereco> Listar()
+        public static List<Opcao> Listar()
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Enderecos.ToList();
+                return ctx.Opcoes.ToList();
             }
         }
 
-        public static Endereco Salvar(Endereco pessoa_)
+        public static Opcao Salvar(Opcao verdade_)
         {
             using (Repositorio ctx = new Repositorio())
             {
-                pessoa_.Validar();
-                Endereco _pessoa = ctx.Enderecos.Where(x => x.id.Equals(pessoa_.id)).FirstOrDefault();
-
+                verdade_.Validar();
                 RequisicaoHTTP requisicao = new RequisicaoHTTP();
-                ctx.Enderecos.Add(pessoa_);
+                ctx.Opcoes.Add(verdade_);
                 ctx.SaveChanges();
-                return pessoa_;
+                return verdade_;
             }
         }
 
@@ -48,23 +46,17 @@ namespace VerdadeConsequencia.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                Endereco _endereco = ctx.Enderecos
+                Opcao _verdade = ctx.Opcoes
                     .Where(s => s.id == uuid).FirstOrDefault();
 
-                if (_endereco == null)
+                if (_verdade == null)
                     return true;
 
-                ctx.Remove(_endereco);
+                ctx.Remove(_verdade);
                 ctx.SaveChanges();
 
                 return true;
             }
         }
-
-
-
-
-
-
     }
 }

@@ -10,7 +10,7 @@ namespace NusaJwt
     public class JwtConfigure
     {
         private static string Secret = "THI10OS)aos0ao01o0oajsiajsij*781728126727suhsahihsUHHahsuaiTRING";
-        private static string Issuer = "CADASTRO_PESSOAL";
+        private static string Issuer = "VERDADE_CONSEQUENCIA";
         private static int SecondsToExpire = 31536000;
 
       

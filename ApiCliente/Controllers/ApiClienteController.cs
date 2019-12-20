@@ -23,20 +23,27 @@ namespace ApiCliente.Controllers
                 cfg.SourceMemberNamingConvention = new LowerUnderscoreNamingConvention();
                 cfg.DestinationMemberNamingConvention = new PascalCaseNamingConvention();
 
-                cfg.CreateMap<EnderecoRequest, Endereco>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<AlertaRequest, Alerta>().IgnoreAllPropertiesWithAnInaccessibleSetter();
                 cfg.CreateMap<PessoaRequest, Pessoa>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<ConsequenciaRequest, Consequencia>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<SequenciaRequest, Sequencia>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<VerdadeRequest, Verdade>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<OpcaoRequest, Opcao>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<TipoRequest, Tipo>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<VerdadeConsequenciaTipoRequest, VerdadeConsequenciaTipo>().IgnoreAllPropertiesWithAnInaccessibleSetter();
             });
 
             var configResponse = new MapperConfiguration(cfg =>
             {
-                cfg.CreateMap<Cidade, CidadeResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
-                cfg.CreateMap<Estado, EstadoResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
-                cfg.CreateMap<Endereco, EnderecoResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
-                cfg.CreateMap<Pessoa, PessoaResponse>().IgnoreAllPropertiesWithAnInaccessibleSetter();
-      
-                //cfg.CreateMap<Pessoa, PessoaResponse>()
-                //.ForMember(dest => dest.foto_perfil_link, opts => opts.MapFrom(src => appSettings.Value.ApiPresenca + "/File/" + "/Perfil/" + src.FotoPerfil));
-
+                cfg.CreateMap<AlertaRequest, Alerta>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<PessoaRequest, Pessoa>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<ConsequenciaRequest, Consequencia>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<SequenciaRequest, Sequencia>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<VerdadeRequest, Verdade>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<OpcaoRequest, Opcao>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<TipoRequest, Tipo>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                cfg.CreateMap<VerdadeConsequenciaTipoRequest, VerdadeConsequenciaTipo>().IgnoreAllPropertiesWithAnInaccessibleSetter();
+                
             });
 
             _mapperResponse = new Mapper(configResponse);

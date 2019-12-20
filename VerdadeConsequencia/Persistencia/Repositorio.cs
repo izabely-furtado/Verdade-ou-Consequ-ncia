@@ -14,12 +14,15 @@ namespace VerdadeConsequencia.Persistencia
             optionsBuilder.UseNpgsql(ConnectionString);
         }
 
-        public DbSet<Cidade> Cidades { get; set; }
-        public DbSet<Estado> Estados { get; set; }
+        public DbSet<Alerta> Alertas { get; set; }
         public DbSet<Pessoa> Pessoas { get; set; }
-        public DbSet<Endereco> Enderecos { get; set; }
-      
-        public DbSet<EscalaIntervalo> EscalaIntervalos { get; set; }
+        public DbSet<Consequencia> Consequencias { get; set; }
+        public DbSet<Sequencia> Sequencias { get; set; }
+        public DbSet<Verdade> Verdades { get; set; }
+        public DbSet<Opcao> Opcoes { get; set; }
+        public DbSet<Tipo> Tipos { get; set; }
+        public DbSet<VerdadeConsequenciaTipo> VerdadeConsequenciaTipos { get; set; }
+
        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -27,13 +30,15 @@ namespace VerdadeConsequencia.Persistencia
             modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetProperties()).ToList()
                 .ForEach(c => c.Relational().ColumnName = ToSnakeCase(c.Name));
 
-            modelBuilder.Entity<Cidade>().ToTable("cidade");
-            modelBuilder.Entity<Estado>().ToTable("estado");
+            modelBuilder.Entity<Alerta>().ToTable("alerta");
             modelBuilder.Entity<Pessoa>().ToTable("pessoa");
-            modelBuilder.Entity<Endereco>().ToTable("endereco");
+            modelBuilder.Entity<Consequencia>().ToTable("consequencia");
+            modelBuilder.Entity<Sequencia>().ToTable("sequencia");
+            modelBuilder.Entity<Verdade>().ToTable("verdade");
+            modelBuilder.Entity<Opcao>().ToTable("opcao");
+            modelBuilder.Entity<Tipo>().ToTable("tipo");
+            modelBuilder.Entity<VerdadeConsequenciaTipo>().ToTable("verdade_consequencia_tipo");
             
-            modelBuilder.Entity<EscalaIntervalo>().ToTable("escala_intervalo");
-         
         }
 
         private string ToSnakeCase(string str)
