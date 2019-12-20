@@ -19,11 +19,11 @@ namespace VerdadeConsequencia.Services
             using (Repositorio ctx = new Repositorio())
             {
                 return ctx.Sequencias
-                    //.Include(a => a.ConsequenciaA)
-                    //.Include(a => a.ConsequenciaB)
-                    //.Include(a => a.ConsequenciaC)
-                    //.Include(a => a.ConsequenciaD)
-                    //.Include(a => a.ConsequenciaE)
+                    //.Include(a => a.Resultado_A)
+                    //.Include(a => a.Resultado_B)
+                    //.Include(a => a.Resultado_C)
+                    //.Include(a => a.Resultado_D)
+                    //.Include(a => a.Resultado_E)
                     .Where(a => a.id == uuid).FirstOrDefault();
             }
         }
