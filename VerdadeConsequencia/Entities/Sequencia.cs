@@ -12,23 +12,23 @@ namespace VerdadeConsequencia.Entities
 
         [ForeignKey("Consequencia")]
         public int resultado_a { get; set; }
-        //public virtual Consequencia Resultado_a { get; set; }
+       // public virtual Consequencia Resultado_A { get; set; }
 
         [ForeignKey("Consequencia")]
         public int resultado_b { get; set; }
-        //public virtual Consequencia Resultado_B { get; set; }
+      //  public virtual Consequencia Resultado_B { get; set; }
 
         [ForeignKey("Consequencia")]
         public int resultado_c { get; set; }
-        //public virtual Consequencia Resultado_C { get; set; }
+      //  public virtual Consequencia Resultado_C { get; set; }
 
         [ForeignKey("Consequencia")]
         public int resultado_d { get; set; }
-        //public virtual Consequencia Resultado_D { get; set; }
+      //  public virtual Consequencia Resultado_D { get; set; }
 
         [ForeignKey("Consequencia")]
         public int resultado_e { get; set; }
-        //public virtual Consequencia Resultado_E { get; set; }
+       // public virtual Consequencia Resultado_E { get; set; }
 
         public void Validar()
         {

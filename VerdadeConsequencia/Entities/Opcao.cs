@@ -12,7 +12,7 @@ namespace VerdadeConsequencia.Entities
         public char letra { get; set; } ///A, B, C, D, E
       
         [ForeignKey("Verdade")]
-        public int? id_verdade { get; set; }
+        public int id_verdade { get; set; }
         public virtual Verdade Verdade { get; set; }
         
         public void Validar()

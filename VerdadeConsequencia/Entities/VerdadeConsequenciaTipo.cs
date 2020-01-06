@@ -10,15 +10,15 @@ namespace VerdadeConsequencia.Entities
     {
         public int tipo_vdd_ou_consequencia { get; set; } //-- 1-vdd 2-consequencia
   
-        [ForeignKey("Tipo")]
+        [ForeignKey("id_tipo")]
         public int id_tipo { get; set; }
         public virtual Tipo Tipo { get; set; }
 
-        [ForeignKey("Verdade")]
+        [ForeignKey("id_verdade")]
         public int? id_verdade { get; set; }
         public virtual Verdade Verdade { get; set; }
 
-        [ForeignKey("Consequencia")]
+        [ForeignKey("id_consequencia")]
         public int? id_consequencia { get; set; }
         public virtual Consequencia Consequencia { get; set; }
 

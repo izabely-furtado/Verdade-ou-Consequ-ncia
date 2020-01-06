@@ -19,11 +19,11 @@ namespace VerdadeConsequencia.Services
             using (Repositorio ctx = new Repositorio())
             {
                 return ctx.Sequencias
-                    //.Include(a => a.Resultado_A)
-                    //.Include(a => a.Resultado_B)
-                    //.Include(a => a.Resultado_C)
-                    //.Include(a => a.Resultado_D)
-                    //.Include(a => a.Resultado_E)
+                    //.Include(a => a.Resultado_A).ThenInclude(p => p.Pessoa)
+                    //.Include(a => a.Resultado_B).ThenInclude(p => p.Pessoa)
+                    //.Include(a => a.Resultado_C).ThenInclude(p => p.Pessoa)
+                    //.Include(a => a.Resultado_D).ThenInclude(p => p.Pessoa)
+                    //.Include(a => a.Resultado_E).ThenInclude(p => p.Pessoa)
                     .Where(a => a.id == uuid).FirstOrDefault();
             }
         }
@@ -32,7 +32,13 @@ namespace VerdadeConsequencia.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Sequencias.ToList();
+                return ctx.Sequencias
+                     //.Include(u => u.Resultado_A)
+                     //.Include(u => u.Resultado_B)
+                     //.Include(u => u.Resultado_C)
+                     //.Include(u => u.Resultado_D)
+                     //.Include(u => u.Resultado_E)
+                     .ToList();
             }
         }
 
