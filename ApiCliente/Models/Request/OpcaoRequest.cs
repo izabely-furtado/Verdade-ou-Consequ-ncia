@@ -7,5 +7,6 @@ namespace ApiCliente.Models.Request
 	    public string descricao { get; set; }
         public int letra { get; set; } ///A, B, C, D, E
         public VerdadeRequest Verdade { get; set; }
+        public int id { get; set; }
     }
 }

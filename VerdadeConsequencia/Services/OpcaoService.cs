@@ -42,6 +42,22 @@ namespace VerdadeConsequencia.Services
             }
         }
 
+        public static Opcao Editar(int uuid, Opcao opcao)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                Opcao _opcao = ctx.Opcoes.Where(x => x.id == uuid).FirstOrDefault();
+                if (_opcao == null)
+                    throw new ApplicationNotFoundException(ApplicationNotFoundException.OPCAO_NAO_ENCONTRADO);
+
+                opcao.Validar();
+                _opcao.descricao = opcao.descricao.ToUpper();
+                ctx.Opcoes.Update(_opcao);
+                ctx.SaveChanges();
+                return _opcao;
+            }
+        }
+
         public static bool Deletar(int uuid)
         {
             using (Repositorio ctx = new Repositorio())

@@ -6,16 +6,11 @@ namespace VerdadeConsequencia.Util
     public class ApplicationNotFoundException : Exception
     {
         #region Mensagens
-        public static readonly string MUNICIPIO_NAO_ENCONTRADO = "Município não encontrado.";
-        public static readonly string BAIRRO_NAO_ENCONTRADO = "Bairro não encontrado.";
-        public static readonly string REGIONAL_NAO_ENCOTRADA = "Regional não encontrada.";
-        public static readonly string NACIONALIDADE_NAO_ENCONTRADA = "Nacionalidade não encontrada.";
-        public static readonly string ESTADO_NAO_ENCONTRADO = "Estado não encontrado.";
-        public static readonly string SETOR_NAO_ENCONTRADO = "Setor não encontrado.";
-        public static readonly string FUNCIONARIO_NAO_ENCONTRADO = "Funcionário não encontrado.";
-        public static readonly string SETOR_TURNO_NAO_ENCONTRADO = "Setor turno não encontrado.";
-        public static readonly string FUNCIONARIO_CARGO_NAO_ENCONTRADO = "Funcionário cargo não encontrado.";
-        public static readonly string FUNCIONARIO_SEM_CLIENTE = "Funcionário sem cliente vinculado.";
+        public static readonly string VERDADE_NAO_ENCONTRADA = "Verdade não encontrada.";
+        public static readonly string CONSEQUENCIA_NAO_ENCONTRADA = "Consequência não encontrada.";
+        public static readonly string TIPO_NAO_ENCONTRADO = "Tipo não encontrado.";
+        public static readonly string ALERTA_NAO_ENCONTRADO = "Alerta não encontrado.";
+        public static readonly string OPCAO_NAO_ENCONTRADO = "Opção não encontrado.";
         public static readonly string ENDERECO_NAO_ENCONTRADO = "Endereço não encontrado.";
         public static readonly string PESSOA_NAO_ENCONTRADO = "Pessoa não encontrada.";
 

@@ -33,10 +33,17 @@ namespace ApiCliente.Controllers
         }
 
         [HttpPost]
-        public ActionResult<AlertaResponse> Salvar([FromBody] AlertaRequest funcionarioRequest)
+        public ActionResult<AlertaResponse> Salvar([FromBody] AlertaRequest alertaRequest)
         {
-            Alerta alerta = _mapperRequest.Map<Alerta>(funcionarioRequest);
+            Alerta alerta = _mapperRequest.Map<Alerta>(alertaRequest);
             return Ok(_mapperResponse.Map<AlertaResponse>(AlertaService.Salvar(alerta)));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<AlertaResponse> Editar(int id, [FromBody] AlertaRequest alertaRequest)
+        {
+            Alerta alerta = _mapperRequest.Map<Alerta>(alertaRequest);
+            return Ok(_mapperResponse.Map<AlertaResponse>(AlertaService.Editar(id, alerta)));
         }
 
         [HttpDelete("{id}")]

@@ -9,5 +9,6 @@ namespace ApiCliente.Models.Request
         public int idade { get; set; }
         public PessoaRequest Pessoa { get; set; }
         public SequenciaRequest Sequencia { get; set; }
+        public int id { get; set; }
     }
 }

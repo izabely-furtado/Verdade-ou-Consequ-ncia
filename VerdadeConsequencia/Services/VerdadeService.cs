@@ -58,6 +58,24 @@ namespace VerdadeConsequencia.Services
             }
         }
 
+        public static Verdade Editar(int uuid, Verdade verdade)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                Verdade _verdade = ctx.Verdades.Where(x => x.id == uuid).FirstOrDefault();
+                if (_verdade == null)
+                    throw new ApplicationNotFoundException(ApplicationNotFoundException.FUNCIONARIO_NAO_ENCONTRADO);
+
+                verdade.Validar();
+                _verdade.descricao = verdade.descricao.ToUpper();
+                _verdade.idade = verdade.idade;
+                _verdade.Tipos = verdade.Tipos;
+                ctx.Verdades.Update(_verdade);
+                ctx.SaveChanges();
+                return _verdade;
+            }
+        }
+
         public static bool Deletar(int uuid)
         {
             using (Repositorio ctx = new Repositorio())

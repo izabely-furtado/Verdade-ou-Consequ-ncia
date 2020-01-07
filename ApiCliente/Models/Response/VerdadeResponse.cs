@@ -10,5 +10,6 @@ namespace ApiCliente.Models.Response
         public PessoaResponse Pessoa { get; set; }
         public SequenciaResponse Sequencia { get; set; }
         public List<TipoResponse> Tipos { get; set; }
+        public int id { get; set; }
     }
 }

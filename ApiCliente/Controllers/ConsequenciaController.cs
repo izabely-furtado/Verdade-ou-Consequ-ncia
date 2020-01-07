@@ -34,10 +34,17 @@ namespace ApiCliente.Controllers
 
 
         [HttpPost]
-        public ActionResult<ConsequenciaResponse> Salvar([FromBody] ConsequenciaRequest funcionarioRequest)
+        public ActionResult<ConsequenciaResponse> Salvar([FromBody] ConsequenciaRequest consequenciaRequest)
         {
-            Consequencia consequencia = _mapperRequest.Map<Consequencia>(funcionarioRequest);
+            Consequencia consequencia = _mapperRequest.Map<Consequencia>(consequenciaRequest);
             return Ok(_mapperResponse.Map<ConsequenciaResponse>(ConsequenciaService.Salvar(consequencia)));
+        }
+
+        [HttpPut("{id}")]
+        public ActionResult<ConsequenciaResponse> Editar(int id, [FromBody] ConsequenciaRequest consequenciaRequest)
+        {
+            Consequencia consequencia = _mapperRequest.Map<Consequencia>(consequenciaRequest);
+            return Ok(_mapperResponse.Map<ConsequenciaResponse>(ConsequenciaService.Editar(id, consequencia)));
         }
 
         [HttpDelete("{id}")]

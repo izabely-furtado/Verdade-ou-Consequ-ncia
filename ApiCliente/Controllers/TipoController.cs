@@ -40,6 +40,13 @@ namespace ApiCliente.Controllers
             return Ok(_mapperResponse.Map<TipoResponse>(TipoService.Salvar(pessoa)));
         }
 
+        [HttpPut("{id}")]
+        public ActionResult<TipoResponse> Editar(int id, [FromBody] TipoRequest tipoRequest)
+        {
+            Tipo tipo = _mapperRequest.Map<Tipo>(tipoRequest);
+            return Ok(_mapperResponse.Map<TipoResponse>(TipoService.Editar(id, tipo)));
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeletarTipo(int id)
         {

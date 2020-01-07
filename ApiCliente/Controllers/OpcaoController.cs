@@ -39,6 +39,13 @@ namespace ApiCliente.Controllers
             return Ok(_mapperResponse.Map<OpcaoResponse>(OpcaoService.Salvar(alerta)));
         }
 
+        [HttpPut("{id}")]
+        public ActionResult<OpcaoResponse> Editar(int id, [FromBody] OpcaoRequest opcaoRequest)
+        {
+            Opcao opcao = _mapperRequest.Map<Opcao>(opcaoRequest);
+            return Ok(_mapperResponse.Map<OpcaoResponse>(OpcaoService.Editar(id, opcao)));
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeletarOpcao(int id)
         {

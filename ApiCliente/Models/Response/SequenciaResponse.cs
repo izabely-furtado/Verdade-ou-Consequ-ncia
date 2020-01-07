@@ -10,5 +10,6 @@ namespace ApiCliente.Models.Response
         //public ConsequenciaResponse Resultado_C { get; set; }
         //public ConsequenciaResponse Resultado_D { get; set; }
         //public ConsequenciaResponse Resultado_E { get; set; }
+        public int id { get; set; }
     }
 }

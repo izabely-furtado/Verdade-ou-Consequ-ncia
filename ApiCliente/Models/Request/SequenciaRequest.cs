@@ -14,5 +14,6 @@ namespace ApiCliente.Models.Request
         //public int resultado_c { get; set; }
         //public int resultado_d { get; set; }
         //public int resultado_e { get; set; }
+        public int id { get; set; }
     }
 }

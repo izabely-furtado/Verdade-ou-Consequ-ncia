@@ -70,6 +70,22 @@ namespace VerdadeConsequencia.Services
             }
         }
 
+        public static Tipo Editar(int uuid, Tipo tipo)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                Tipo _tipo = ctx.Tipos.Where(x => x.id == uuid).FirstOrDefault();
+                if (_tipo == null)
+                    throw new ApplicationNotFoundException(ApplicationNotFoundException.OPCAO_NAO_ENCONTRADO);
+
+                tipo.Validar();
+                _tipo.descricao = tipo.descricao.ToUpper();
+                ctx.Tipos.Update(_tipo);
+                ctx.SaveChanges();
+                return _tipo;
+            }
+        }
+
         public static bool Deletar(int uuid)
         {
             using (Repositorio ctx = new Repositorio())

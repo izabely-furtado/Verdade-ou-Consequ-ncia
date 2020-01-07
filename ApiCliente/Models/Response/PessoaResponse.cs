@@ -8,5 +8,6 @@ namespace ApiCliente.Models.Response
         public int sexo { get; set; } //-- 1-masculino | 2-feminino | 3-ambos
         public Boolean gosto_feminino { get; set; }
         public Boolean gosto_masculino { get; set; }
+        public int id { get; set; }
     }
 }

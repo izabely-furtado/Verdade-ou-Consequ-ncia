@@ -55,17 +55,35 @@ namespace VerdadeConsequencia.Services
             }
         }
 
+        public static Consequencia Editar(int uuid, Consequencia consequencia)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                Consequencia _consequencia = ctx.Consequencias.Where(x => x.id == uuid).FirstOrDefault();
+                if (_consequencia == null)
+                    throw new ApplicationNotFoundException(ApplicationNotFoundException.CONSEQUENCIA_NAO_ENCONTRADA);
+
+                consequencia.Validar();
+                _consequencia.descricao = consequencia.descricao.ToUpper();
+                _consequencia.idade = consequencia.idade;
+                _consequencia.Tipos = consequencia.Tipos;
+                ctx.Consequencias.Update(_consequencia);
+                ctx.SaveChanges();
+                return _consequencia;
+            }
+        }
+
         public static bool Deletar(int uuid)
         {
             using (Repositorio ctx = new Repositorio())
             {
-                Consequencia _alerta = ctx.Consequencias
+                Consequencia _consequencia = ctx.Consequencias
                     .Where(s => s.id == uuid).FirstOrDefault();
 
-                if (_alerta == null)
+                if (_consequencia == null)
                     return true;
 
-                ctx.Remove(_alerta);
+                ctx.Remove(_consequencia);
                 ctx.SaveChanges();
 
                 return true;

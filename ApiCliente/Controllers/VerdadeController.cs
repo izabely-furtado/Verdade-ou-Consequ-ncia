@@ -40,6 +40,13 @@ namespace ApiCliente.Controllers
             return Ok(_mapperResponse.Map<VerdadeResponse>(VerdadeService.Salvar(pessoa)));
         }
 
+        [HttpPut("{id}")]
+        public ActionResult<VerdadeResponse> Editar(int id, [FromBody] VerdadeRequest verdadeRequest)
+        {
+            Verdade verdade = _mapperRequest.Map<Verdade>(verdadeRequest);
+            return Ok(_mapperResponse.Map<VerdadeResponse>(VerdadeService.Editar(id, verdade)));
+        }
+
         [HttpDelete("{id}")]
         public ActionResult DeletarVerdade(int id)
         {

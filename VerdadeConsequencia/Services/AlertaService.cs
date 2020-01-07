@@ -35,10 +35,27 @@ namespace VerdadeConsequencia.Services
             using (Repositorio ctx = new Repositorio())
             {
                 alerta_.Validar();
-                RequisicaoHTTP requisicao = new RequisicaoHTTP();
+                alerta_.descricao = alerta_.descricao.ToUpper();
                 ctx.Alertas.Add(alerta_);
                 ctx.SaveChanges();
                 return alerta_;
+            }
+        }
+
+        public static Alerta Editar(int uuid, Alerta alerta)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                Alerta _alerta = ctx.Alertas.Where(x => x.id == uuid).FirstOrDefault();
+                if (_alerta == null)
+                    throw new ApplicationNotFoundException(ApplicationNotFoundException.ALERTA_NAO_ENCONTRADO);
+
+                alerta.Validar();
+                _alerta.descricao = alerta.descricao.ToUpper();
+                _alerta.tipo = alerta.tipo;
+                ctx.Alertas.Update(_alerta);
+                ctx.SaveChanges();
+                return _alerta;
             }
         }
 
