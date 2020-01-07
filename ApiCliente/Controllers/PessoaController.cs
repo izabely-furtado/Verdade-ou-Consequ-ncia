@@ -28,9 +28,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<PessoaResponse> Obter(int uuid)
+        public ActionResult<PessoaResponse> Obter(int id)
         {
-            return Ok(_mapperResponse.Map<PessoaResponse>(PessoaService.Obter(uuid)));
+            return Ok(_mapperResponse.Map<PessoaResponse>(PessoaService.Obter(id)));
         }
 
         [HttpPost]
@@ -41,9 +41,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletarPessoa(int uuid)
+        public ActionResult DeletarPessoa(int id)
         {
-            return Ok(PessoaService.Deletar(uuid));
+            return Ok(PessoaService.Deletar(id));
         }
 
         ////// coisas do antigo

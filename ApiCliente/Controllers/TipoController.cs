@@ -28,9 +28,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<TipoResponse> Obter(int uuid)
+        public ActionResult<TipoResponse> Obter(int id)
         {
-            return Ok(_mapperResponse.Map<TipoResponse>(TipoService.Obter(uuid)));
+            return Ok(_mapperResponse.Map<TipoResponse>(TipoService.Obter(id)));
         }
 
         [HttpPost]
@@ -41,9 +41,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletarTipo(int uuid)
+        public ActionResult DeletarTipo(int id)
         {
-            return Ok(TipoService.Deletar(uuid));
+            return Ok(TipoService.Deletar(id));
         }
         
     }

@@ -126,7 +126,7 @@
             <tbody>
               <tr *ngFor="let conseq of listaConsequencias | filterBy: filtro">
                 <td data-title="Descrição">{{conseq.descricao.toUpperCase()}}</td>
-                 <td data-title="Tipo"><div *ngFor="let tipo of conseq.tipos">{{tipo.descricao.toUpperCase()}} </div> </td>
+                 <td data-title="Tipo"><div *ngFor="let tipo of conseq.tipos; let i = index">{{tipo.descricao.toUpperCase()}}<span *ngIf="i < conseq.tipos.length -1"> | </span></div> </td>
                 <td data-title="Idade">{{descIdade(conseq.idade)}}</td>
                 <td data-title="Ação">
                   <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(consequencia)">

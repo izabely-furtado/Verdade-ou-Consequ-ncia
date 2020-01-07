@@ -235,7 +235,6 @@ export class AlertaComponent implements OnInit {
   }
 
   descTipo(tipo) {
-    debugger
     if (tipo == 1) {
       return "Pulo";
     }

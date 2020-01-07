@@ -255,7 +255,6 @@ export class VerdadeComponent implements OnInit {
   }
 
   descTipo(tipo) {
-    debugger
     if (tipo == 1) { return "Pulo"; }
     if (tipo == 2) { return "21+"; }
     if (tipo == 3) { return "Parabenização"; }

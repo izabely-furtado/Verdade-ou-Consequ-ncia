@@ -27,9 +27,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<ConsequenciaResponse> Obter(int uuid)
+        public ActionResult<ConsequenciaResponse> Obter(int id)
         {
-            return Ok(_mapperResponse.Map<ConsequenciaResponse>(ConsequenciaService.Obter(uuid)));
+            return Ok(_mapperResponse.Map<ConsequenciaResponse>(ConsequenciaService.Obter(id)));
         }
 
 
@@ -41,9 +41,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletarConsequencia(int uuid)
+        public ActionResult DeletarConsequencia(int id)
         {
-            return Ok(ConsequenciaService.Deletar(uuid));
+            return Ok(ConsequenciaService.Deletar(id));
         }
         
     }

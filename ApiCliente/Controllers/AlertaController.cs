@@ -27,9 +27,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<AlertaResponse> Obter(int uuid)
+        public ActionResult<AlertaResponse> Obter(int id)
         {
-            return Ok(_mapperResponse.Map<AlertaResponse>(AlertaService.Obter(uuid)));
+            return Ok(_mapperResponse.Map<AlertaResponse>(AlertaService.Obter(id)));
         }
 
         [HttpPost]
@@ -40,9 +40,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletarAlerta(int uuid)
+        public ActionResult DeletarAlerta(int id)
         {
-            return Ok(AlertaService.Deletar(uuid));
+            return Ok(AlertaService.Deletar(id));
         }
         
     }

@@ -27,9 +27,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<OpcaoResponse> Obter(int uuid)
+        public ActionResult<OpcaoResponse> Obter(int id)
         {
-            return Ok(_mapperResponse.Map<OpcaoResponse>(OpcaoService.Obter(uuid)));
+            return Ok(_mapperResponse.Map<OpcaoResponse>(OpcaoService.Obter(id)));
         }
 
         [HttpPost]
@@ -40,9 +40,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletarOpcao(int uuid)
+        public ActionResult DeletarOpcao(int id)
         {
-            return Ok(OpcaoService.Deletar(uuid));
+            return Ok(OpcaoService.Deletar(id));
         }
         
     }

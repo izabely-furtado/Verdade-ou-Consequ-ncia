@@ -28,9 +28,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<VerdadeResponse> Obter(int uuid)
+        public ActionResult<VerdadeResponse> Obter(int id)
         {
-            return Ok(_mapperResponse.Map<VerdadeResponse>(VerdadeService.Obter(uuid)));
+            return Ok(_mapperResponse.Map<VerdadeResponse>(VerdadeService.Obter(id)));
         }
 
         [HttpPost]
@@ -41,9 +41,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletarVerdade(int uuid)
+        public ActionResult DeletarVerdade(int id)
         {
-            return Ok(VerdadeService.Deletar(uuid));
+            return Ok(VerdadeService.Deletar(id));
         }
         
     }

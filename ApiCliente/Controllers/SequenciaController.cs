@@ -27,9 +27,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpGet("{id}")]
-        public ActionResult<SequenciaResponse> Obter(int uuid)
+        public ActionResult<SequenciaResponse> Obter(int id)
         {
-            return Ok(_mapperResponse.Map<SequenciaResponse>(SequenciaService.Obter(uuid)));
+            return Ok(_mapperResponse.Map<SequenciaResponse>(SequenciaService.Obter(id)));
         }
 
         [HttpPost]
@@ -40,9 +40,9 @@ namespace ApiCliente.Controllers
         }
 
         [HttpDelete("{id}")]
-        public ActionResult DeletarSequencia(int uuid)
+        public ActionResult DeletarSequencia(int id)
         {
-            return Ok(SequenciaService.Deletar(uuid));
+            return Ok(SequenciaService.Deletar(id));
         }
         
     }

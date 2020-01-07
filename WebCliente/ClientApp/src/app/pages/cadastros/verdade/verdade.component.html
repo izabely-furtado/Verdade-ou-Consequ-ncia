@@ -126,7 +126,7 @@
             <tbody>
               <tr *ngFor="let verdad of listaVerdades | filterBy: filtro">
                 <td data-title="Descrição">{{verdad.descricao}}</td>
-                <td data-title="Tipo"><div *ngFor="let tipo of verdad.tipos">{{tipo.descricao.toUpperCase()}} </div></td>
+                <td data-title="Tipo"><div *ngFor="let tipo of verdad.tipos">{{tipo.descricao.toUpperCase()}}<span *ngIf="i < verdad.tipos.length -1"> | </span></div></td>
                 <td data-title="Idade">{{descIdade(verdad.idade)}}</td>
                 <td data-title="Ação">
                   <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(verdade)">
