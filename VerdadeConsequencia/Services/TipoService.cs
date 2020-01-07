@@ -30,6 +30,34 @@ namespace VerdadeConsequencia.Services
             }
         }
 
+        public static List<Tipo> ListarTiposVerdade(int verdade_id)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                List<VerdadeConsequenciaTipo> vct = ctx.VerdadeConsequenciaTipos.Where(a => a.id_verdade == verdade_id).Include(a => a.Tipo).ToList();
+                List<Tipo> tipos = new List<Tipo>();
+                foreach (var tipo in vct)
+                {
+                    tipos.Add(tipo.Tipo);
+                }
+                return tipos;
+            }
+        }
+
+        public static List<Tipo> ListarTiposConsequencia(int consequencia_id)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                List<VerdadeConsequenciaTipo> vct = ctx.VerdadeConsequenciaTipos.Where(a => a.id_consequencia == consequencia_id).Include(a => a.Tipo).ToList();
+                List<Tipo> tipos = new List<Tipo>();
+                foreach (var tipo in vct)
+                {
+                    tipos.Add(tipo.Tipo);
+                }
+                return tipos;
+            }
+        }
+
         public static Tipo Salvar(Tipo tipo_)
         {
             using (Repositorio ctx = new Repositorio())

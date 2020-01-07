@@ -15,6 +15,9 @@ namespace VerdadeConsequencia.Entities
         public int? id_pessoa { get; set; }
         public virtual Pessoa Pessoa { get; set; }
 
+        [NotMapped]
+        public List<Tipo> Tipos { get; set; }
+
         public void Validar()
         {
             if (String.IsNullOrEmpty(this.descricao))

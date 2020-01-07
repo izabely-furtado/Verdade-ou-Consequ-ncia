@@ -68,6 +68,10 @@ import { ApiService } from './services/api.service';
 import { AppConfig } from './services/app.config';
 
 import { PessoaComponent } from './pages/cadastros/pessoa/pessoa.component';
+import { TipoComponent } from './pages/cadastros/tipo/tipo.component';
+import { AlertaComponent } from './pages/cadastros/alerta/alerta.component';
+import { ConsequenciaComponent } from './pages/cadastros/consequencia/consequencia.component';
+import { VerdadeComponent } from './pages/cadastros/verdade/verdade.component';
 
 export function initializeApp(appConfig: AppConfig) {
   return () => appConfig.load();
@@ -92,6 +96,10 @@ export const MY_MOMENT_FORMATS = {
     FetchDataComponent,
     TopBarComponent,
     PessoaComponent,
+    TipoComponent,
+    AlertaComponent,
+    ConsequenciaComponent,
+    VerdadeComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

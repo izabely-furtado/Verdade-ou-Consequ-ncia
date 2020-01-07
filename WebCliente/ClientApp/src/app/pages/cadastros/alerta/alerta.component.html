@@ -1,0 +1,141 @@
+<!-- Tela alerta cadastro -->
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaPessoa">
+  <div class="col-lg-12">
+    <div class="white-panel form-panel">
+      <div class="white-header" style="justify-content: space-between; display:flex">
+        <div>
+          <h4 class="titulo_painel">Cadastro de Alertas</h4>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-default btn_nav" (click)="back()">Voltar</button>
+        </div>
+      </div>
+      <form class="form-horizontal style-form">
+       
+        <!-- nome e sobrenome -->
+        <div class="row col-xs-12 col-lg-12">
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Nome</label>
+            <div class="col-lg-9">
+              <input [(ngModel)]="alerta.descricao" type="text" class="form-control" name="alerta_nome">
+            </div>
+          </div>
+          
+        </div>
+       
+        
+        <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
+          <div class="row col-sm-12">
+            
+            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Estado</label>
+              <div class="col-sm-9">
+                <select class="form-control col-6 col-sm-8" [(ngModel)]="alerta.tipo" id="alerta_tipo_id" name="alerta_tipo_id" required>
+                  <option disabled selected>Selecione..</option>
+                  <option *ngFor="let e of listaTipos" [ngValue]="e.id">
+                    {{e.descricao}}
+                  </option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- botão de salvar -->
+        <div class="row text-center">
+          <button class="btn btn-theme btn-salvar" (click)="submit()">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Tela alerta inicial -->
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaPessoa">
+  <div class="col-lg-12">
+    <div class="white-panel form-panel">
+      <div class="white-header" style="justify-content: space-between; display:flex">
+        <div>
+          <h4 class="titulo_painel">Lista de Alertas</h4>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-primary btn_nav" (click)="add()">
+            Adicionar Alerta
+          </button>
+        </div>
+      </div>
+
+      <div class="row pesquisa_alerta">
+        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
+          <tr style="background-color:transparent; border: 0px;">
+            <th style="border: 0px; width: 33%; padding-bottom:0px">
+              <label style="margin:0px">Descrição:</label>
+            </th>
+            <th style="border: 0px; width: 33%; padding-bottom:0px">
+              <label style="margin:0px">Tipo:</label>
+            </th>
+          </tr>
+          <tr style="background-color:transparent; border: 0px;">
+            <td style="border: 0px; ">
+              <input [(ngModel)]="filtro.descricao" type="text" class="form-control" name="alerta_nome">
+            </td>
+            <td style="border: 0px; ">
+              <select class="form-control" [(ngModel)]="filtro.tipo" id="filtro_tipo_id" name="filtro_tipo_id" required>
+                <option disabled selected>Selecione..</option>
+                <option *ngFor="let e of listaTipos" [ngValue]="e.id">
+                  {{e.descricao}}
+                </option>
+              </select>
+            </td>
+          </tr>
+        </table>
+
+        <section id="no-more-tables">
+          <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>Descrição</th>
+                <th>Tipo</th>
+                <th style="width: 10%">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let alerta of listaAlertas | filterBy: filtro">
+                <td data-title="Descrição">{{alerta.descricao}}</td>
+                <td data-title="Tipo">{{descTipo(alerta.tipo)}}</td>
+                <td data-title="Ação">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(alerta)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="remove(alerta)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        
+        <div class="legenda">
+          <label class="control-label">Legenda:</label> &nbsp;
+          <!-- item -->
+          <a class="btn btn-sm btn-warning cancelaHover">
+            <i class="fas fa-edit"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Editar</label>
+          <!-- separador -->
+          &emsp;|&emsp;
+          <a class="btn btn-sm btn-danger">
+            <i class="fas fa-times"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Remover</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
+        primaryColour: '#0196ed', secondaryColour: '#23527c', tertiaryColour: '#0196ed' }"></ngx-loading>

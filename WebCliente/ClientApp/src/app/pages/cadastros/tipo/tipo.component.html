@@ -1,0 +1,109 @@
+<!-- Tela alerta cadastro -->
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaPessoa">
+  <div class="col-lg-12">
+    <div class="white-panel form-panel">
+      <div class="white-header" style="justify-content: space-between; display:flex">
+        <div>
+          <h4 class="titulo_painel">Cadastro de Tipos</h4>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-default btn_nav" (click)="back()">Voltar</button>
+        </div>
+      </div>
+      <form class="form-horizontal style-form">
+       
+        <!-- nome e sobrenome -->
+        <div class="row col-xs-12 col-lg-12">
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Descrição</label>
+            <div class="col-lg-9">
+              <input [(ngModel)]="tipo.descricao" type="text" class="form-control" name="alerta_nome">
+            </div>
+          </div>
+          
+        </div>
+        
+        <!-- botão de salvar -->
+        <div class="row text-center">
+          <button class="btn btn-theme btn-salvar" (click)="submit()">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Tela tipo inicial -->
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaPessoa">
+  <div class="col-lg-12">
+    <div class="white-panel form-panel">
+      <div class="white-header" style="justify-content: space-between; display:flex">
+        <div>
+          <h4 class="titulo_painel">Lista de Tipos</h4>
+        </div>
+        <div>
+          <button class="btn btn-sm btn-primary btn_nav" (click)="add()">
+            Adicionar Tipo
+          </button>
+        </div>
+      </div>
+
+      <div class="row pesquisa_tipo">
+        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
+          <tr style="background-color:transparent; border: 0px;">
+            <th style="border: 0px; width: 33%; padding-bottom:0px">
+              <label style="margin:0px">Descrição:</label>
+            </th>
+          </tr>
+          <tr style="background-color:transparent; border: 0px;">
+            <td style="border: 0px; ">
+              <input [(ngModel)]="filtro.descricao" type="text" class="form-control" name="alerta_nome">
+            </td>
+          </tr>
+        </table>
+
+        <section id="no-more-tables">
+          <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>Descrição</th>
+                <th style="width: 10%">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tip of listaTipos | filterBy: filtro">
+                <td data-title="Descrição">{{tip.descricao}}</td>
+                <td data-title="Ação">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(tip)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="remove(tip)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+        <div class="legenda">
+          <label class="control-label">Legenda:</label> &nbsp;
+          <!-- item -->
+          <a class="btn btn-sm btn-warning cancelaHover">
+            <i class="fas fa-edit"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Editar</label>
+          <!-- separador -->
+          &emsp;|&emsp;
+          <a class="btn btn-sm btn-danger">
+            <i class="fas fa-times"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Remover</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-loading [show]="loading" [config]="{ backdropBackgroundColour: 'rgba(255,255,255,0.3)', backdropBorderRadius: '10px',
+        primaryColour: '#0196ed', secondaryColour: '#23527c', tertiaryColour: '#0196ed' }"></ngx-loading>

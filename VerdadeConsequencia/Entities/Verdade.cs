@@ -19,6 +19,9 @@ namespace VerdadeConsequencia.Entities
         public int? id_sequencia { get; set; }
         public virtual Sequencia Sequencia { get; set; }
 
+        [NotMapped]
+        public List<Tipo> Tipos { get; set; }
+
         public void Validar()
         {
             if (String.IsNullOrEmpty(this.descricao))

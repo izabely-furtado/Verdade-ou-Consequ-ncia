@@ -18,10 +18,15 @@ namespace VerdadeConsequencia.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Verdades
+                Verdade verdade = ctx.Verdades
                     .Include(a => a.Pessoa)
                     .Include(a => a.Sequencia)
                     .Where(a => a.id == uuid).FirstOrDefault();
+                if (verdade != null)
+                {
+                    verdade.Tipos = TipoService.ListarTiposVerdade(verdade.id);
+                }
+                return verdade;
             }
         }
 
@@ -29,7 +34,15 @@ namespace VerdadeConsequencia.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Verdades.Include(a => a.Pessoa).ToList();
+                List<Verdade> verdades = ctx.Verdades.Include(a => a.Pessoa).ToList();
+                if (verdades != null)
+                {
+                    foreach (var verdade in verdades)
+                    {
+                        verdade.Tipos = TipoService.ListarTiposVerdade(verdade.id);
+                    }
+                }
+                return verdades;
             }
         }
 
