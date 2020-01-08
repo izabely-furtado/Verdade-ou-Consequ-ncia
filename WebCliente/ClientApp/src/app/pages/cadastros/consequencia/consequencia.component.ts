@@ -210,7 +210,7 @@ export class ConsequenciaComponent implements OnInit {
 
   remove(consequencia) {
     this.loading = true;
-    this.apiService.Delete("Consequencia", consequencia.cpf + "?uuid=" + consequencia.cpf).then(
+    this.apiService.Delete("Consequencia", consequencia.id).then(
       result => {
         this.ngOnInit();
         this.loading = false;
@@ -229,12 +229,9 @@ export class ConsequenciaComponent implements OnInit {
 
   obterConsequencia(consequencia) {
     this.loading = true;
-    this.apiService.GetOne("Consequencia", consequencia.cpf + "?uuid=" + consequencia.cpf).then(
+    this.apiService.GetOne("Consequencia", consequencia.id).then(
       result => {
         this.consequencia = result;
-        if (this.consequencia != null && this.consequencia.data_nascimento != null) {
-          this.consequencia.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
-        }
         this.loading = false;
       },
       err => {

@@ -39,12 +39,12 @@ namespace ApiCliente.Controllers
             return Ok(_mapperResponse.Map<SequenciaResponse>(SequenciaService.Salvar(pessoa)));
         }
 
-        [HttpPut("{id}")]
-        public ActionResult<SequenciaResponse> Editar(int id, [FromBody] SequenciaRequest sequenciaRequest)
-        {
-            Sequencia sequencia = _mapperRequest.Map<Sequencia>(sequenciaRequest);
-            return Ok(_mapperResponse.Map<SequenciaResponse>(SequenciaService.Editar(id, sequencia)));
-        }
+        //[HttpPut("{id}")]
+        //public ActionResult<SequenciaResponse> Editar(int id, [FromBody] SequenciaRequest sequenciaRequest)
+        //{
+        //    Sequencia sequencia = _mapperRequest.Map<Sequencia>(sequenciaRequest);
+        //    return Ok(_mapperResponse.Map<SequenciaResponse>(SequenciaService.Editar(id, sequencia)));
+        //}
 
         [HttpDelete("{id}")]
         public ActionResult DeletarSequencia(int id)

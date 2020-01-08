@@ -1,5 +1,5 @@
 <!-- Tela alerta cadastro -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novoTipo">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -14,9 +14,9 @@
        
         <!-- nome e sobrenome -->
         <div class="row col-xs-12 col-lg-12">
-          <div class="form-group col-xs-6">
-            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Descrição</label>
-            <div class="col-lg-9">
+          <div class="form-group col-xs-12">
+            <label class="control-label"><b style="color:#aa0028">*</b>Descrição:</label>
+            <div class="col-lg-12">
               <input [(ngModel)]="tipo.descricao" type="text" class="form-control" name="alerta_nome">
             </div>
           </div>
@@ -33,7 +33,7 @@
 </div>
 
 <!-- Tela tipo inicial -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novoTipo">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -48,7 +48,7 @@
       </div>
 
       <div class="row pesquisa_tipo">
-        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
+        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin-left: 10px;width: 98.5%;">
           <tr style="background-color:transparent; border: 0px;">
             <th style="border: 0px; width: 33%; padding-bottom:0px">
               <label style="margin:0px">Descrição:</label>

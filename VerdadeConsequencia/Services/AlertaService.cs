@@ -26,7 +26,7 @@ namespace VerdadeConsequencia.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Alertas.ToList();
+                return ctx.Alertas.OrderBy(a => a.tipo).ToList();
             }
         }
 

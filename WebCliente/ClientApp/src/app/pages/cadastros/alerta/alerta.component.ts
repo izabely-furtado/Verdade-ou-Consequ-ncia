@@ -28,7 +28,7 @@ import { AppComponent } from '../../../app.component';
 })
 export class AlertaComponent implements OnInit {
 
-  novaAlerta: boolean = false;
+  novoAlerta: boolean = false;
   filtro: any = {};
   alerta: any = {};
   endereco: any = {};
@@ -67,13 +67,13 @@ export class AlertaComponent implements OnInit {
   }
 
   add() {
-    this.novaAlerta = true;
+    this.novoAlerta = true;
     this.alerta = {};
   }
 
   back() {
     this.obterAlertas();
-    this.novaAlerta = false;
+    this.novoAlerta = false;
     this.alerta = {};
   }
   
@@ -98,7 +98,7 @@ export class AlertaComponent implements OnInit {
   }
 
   edit(pessoa) {
-    this.novaAlerta = true;
+    this.novoAlerta = true;
     this.obterAlerta(pessoa);
     //this.alerta = pessoa;
     this.visualizando = false;
@@ -132,9 +132,10 @@ export class AlertaComponent implements OnInit {
   obterTipos() {
     this.loading = true;
     this.listaTipos = [];
-    this.listaTipos.push({ descricao: "Pulo", id: 1 });
-    this.listaTipos.push({ descricao: "21+", id: 2 });
-    this.listaTipos.push({ descricao: "Parabenização", id: 3 });
+    this.listaTipos.push({ descricao: "Pulo - Verdade", id: 1 });
+    this.listaTipos.push({ descricao: "Pulo - Consequencia", id: 2 });
+    this.listaTipos.push({ descricao: "21+", id: 3 });
+    this.listaTipos.push({ descricao: "Parabenização", id: 4 });
     
   }
   
@@ -190,7 +191,7 @@ export class AlertaComponent implements OnInit {
 
   remove(alerta) {
     this.loading = true;
-    this.apiService.Delete("Alerta", alerta.cpf + "?uuid=" + alerta.cpf).then(
+    this.apiService.Delete("Alerta", alerta.id).then(
       result => {
         this.ngOnInit();
         this.loading = false;
@@ -209,12 +210,9 @@ export class AlertaComponent implements OnInit {
 
   obterAlerta(alerta) {
     this.loading = true;
-    this.apiService.GetOne("Alerta", alerta.cpf + "?uuid=" + alerta.cpf).then(
+    this.apiService.GetOne("Alerta", alerta.id).then(
       result => {
         this.alerta = result;
-        if (this.alerta != null && this.alerta.data_nascimento != null) {
-          this.alerta.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
-        }
         this.loading = false;
       },
       err => {
@@ -236,12 +234,15 @@ export class AlertaComponent implements OnInit {
 
   descTipo(tipo) {
     if (tipo == 1) {
-      return "Pulo";
+      return "Pulo - Verdade";
     }
     if (tipo == 2) {
-      return "21+";
+      return "Pulo - Consequencia";
     }
     if (tipo == 3) {
+      return "21+";
+    }
+    if (tipo == 4) {
       return "Parabenização";
     }
   }

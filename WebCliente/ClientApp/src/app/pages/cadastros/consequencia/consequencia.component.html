@@ -1,5 +1,5 @@
 <!-- Tela consequencia cadastro -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaConsequencia">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -63,7 +63,7 @@
 </div>
 
 <!-- Tela consequencia inicial -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaConsequencia">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -78,7 +78,7 @@
       </div>
 
       <div class="row pesquisa_consequencia">
-        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
+        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin-left: 10px;width: 98.5%;">
           <tr style="background-color:transparent; border: 0px;">
             <th style="border: 0px; width: 33%; padding-bottom:0px">
               <label style="margin:0px">Descrição:</label>
@@ -126,7 +126,7 @@
             <tbody>
               <tr *ngFor="let conseq of listaConsequencias | filterBy: filtro">
                 <td data-title="Descrição">{{conseq.descricao.toUpperCase()}}</td>
-                 <td data-title="Tipo"><div *ngFor="let tipo of conseq.tipos; let i = index">{{tipo.descricao.toUpperCase()}}<span *ngIf="i < conseq.tipos.length -1"> | </span></div> </td>
+                <td data-title="Tipo"><div *ngFor="let tipo of conseq.tipos; let i = index">{{tipo.descricao.toUpperCase()}}<span *ngIf="i < conseq.tipos.length -1"> | </span></div> </td>
                 <td data-title="Idade">{{descIdade(conseq.idade)}}</td>
                 <td data-title="Ação">
                   <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(consequencia)">
@@ -140,7 +140,7 @@
             </tbody>
           </table>
         </section>
-        
+
         <div class="legenda">
           <label class="control-label">Legenda:</label> &nbsp;
           <!-- item -->

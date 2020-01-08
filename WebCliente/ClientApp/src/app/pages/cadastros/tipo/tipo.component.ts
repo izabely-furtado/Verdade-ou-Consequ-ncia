@@ -129,7 +129,7 @@ export class TipoComponent implements OnInit {
             Swal.fire({
               type: 'success',
               title: 'Sucesso!',
-              text: 'Alerta salvo com sucesso!'
+              text: 'Tipo salvo com sucesso!'
             });
           },
           err => {
@@ -149,7 +149,7 @@ export class TipoComponent implements OnInit {
             Swal.fire({
               type: 'success',
               title: 'Sucesso!',
-              text: 'Alerta salvo com sucesso!'
+              text: 'Tipo salvo com sucesso!'
             });
           },
           err => {
@@ -170,10 +170,15 @@ export class TipoComponent implements OnInit {
 
   remove(tipo) {
     this.loading = true;
-    this.apiService.Delete("Tipo", tipo.cpf + "?uuid=" + tipo.cpf).then(
+    this.apiService.Delete("Tipo", tipo.id).then(
       result => {
         this.ngOnInit();
         this.loading = false;
+        Swal.fire({
+          type: 'success',
+          title: 'Sucesso!',
+          text: 'Tipo removido com sucesso!'
+        });
       },
       err => {
         this.loading = false;
@@ -189,12 +194,9 @@ export class TipoComponent implements OnInit {
 
   obterTipo(tipo) {
     this.loading = true;
-    this.apiService.GetOne("Tipo", tipo.cpf + "?uuid=" + tipo.cpf).then(
+    this.apiService.GetOne("Tipo", tipo.id).then(
       result => {
         this.tipo = result;
-        if (this.tipo != null && this.tipo.data_nascimento != null) {
-          this.tipo.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
-        }
         this.loading = false;
       },
       err => {

@@ -1,5 +1,5 @@
 <!-- Tela verdade cadastro -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaVerdade">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -11,48 +11,131 @@
         </div>
       </div>
       <form class="form-horizontal style-form">
-       
-        <!-- nome e sobrenome -->
+
         <div class="row col-xs-12 col-lg-12">
-          <div class="form-group col-xs-6">
-            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Nome</label>
-            <div class="col-lg-9">
-              <input [(ngModel)]="verdade.descricao" type="text" class="form-control" name="verdade_nome">
+          <div class="form-group col-xs-4">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Descrição:</label>
+            <div class="col-lg-12">
+              <input [(ngModel)]="verdade.descricao" type="text" class="form-control" name="alerta_nome">
             </div>
           </div>
-          
+
+          <div class="form-group col-xs-4">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Idade:</label>
+            <div class="col-lg-12">
+              <select class="form-control" [(ngModel)]="verdade.idade" id="verdade_idade_id" name="verdade_idade_id" required>
+                <option disabled selected>Selecione..</option>
+                <option *ngFor="let e of listaIdades" [ngValue]="e.id">
+                  {{e.descricao}}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group col-xs-4">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Sequencia:</label>
+            <div class="col-lg-12">
+              <select class="form-control" [(ngModel)]="verdade.sequencia" id="verdade_idade_id" name="verdade_idade_id" required>
+                <option disabled selected>Selecione..</option>
+                <option *ngFor="let e of listaSequencias" [ngValue]="e.id">
+                  {{e.descricao}}
+                </option>
+              </select>
+            </div>
+          </div>
+
         </div>
-       
-        
+
+        <!--inserindo tipos-->
         <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
           <div class="row col-sm-12">
-            
-            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
-              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Estado</label>
-              <div class="col-sm-9">
-                <select class="form-control col-6 col-sm-8" [(ngModel)]="verdade.idade" id="verdade_idade_id" name="verdade_idade_id" required>
+            <div class="form-group col-xs-11" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="control-label"><b style="color:#aa0028">*</b>Tipo:</label>
+              <div class="col-sm-12" style="padding-right: 0px;">
+                <select class="form-control" [(ngModel)]="verdade.tipo" id="verdade_tipo_id" name="verdade_tipo_id" required>
                   <option disabled selected>Selecione..</option>
-                  <option *ngFor="let e of listaIdades" [ngValue]="e.id">
+                  <option *ngFor="let e of listaTipos" [ngValue]="e">
                     {{e.descricao}}
                   </option>
                 </select>
               </div>
             </div>
 
-            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
-              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Estado</label>
-              <div class="col-sm-9">
-                <select class="form-control col-6 col-sm-8" [(ngModel)]="verdade.tipo" id="verdade_tipo_id" name="verdade_tipo_id" required>
-                  <option disabled selected>Selecione..</option>
-                  <option *ngFor="let e of listaTipos" [ngValue]="e.id">
-                    {{e.descricao}}
-                  </option>
-                </select>
-              </div>
+            <div class="form-group col-xs-1" style="padding-bottom: 0px; padding-top: 15px; padding-left: 0px; padding-right: 30px;">
+              <button class="btn btn-theme" type="button" (click)="addTipo(verdade.tipo)" style="width: 100%"><i class="fa fa-plus"></i></button>
             </div>
           </div>
         </div>
+
+        <section id="no-more-tables" style="margin-top: 15px;">
+          <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>Tipo</th>
+                <th style="width: 10%">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ver of verdade.Tipos; let i = index" [attr.data-index]="i">
+                <td data-title="Nome">{{ver.descricao}}</td>
+                <td data-title="Ação">
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="removeTipo(i)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!--inserindo opções-->
+        <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
+          <div class="row col-sm-12">
         
+            <div class="form-group col-xs-11" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="control-label"><b style="color:#aa0028">*</b>Descrição:</label>
+              <div class="col-lg-12">
+                <input [(ngModel)]="verdade.opcao" type="text" class="form-control" name="alerta_nome">
+              </div>
+            </div>
+
+            <div class="form-group col-xs-1" style="padding-bottom: 0px; padding-top: 15px; padding-left: 0px; padding-right: 30px;">
+              <button class="btn btn-theme" type="button" (click)="addOpcao(verdade.opcao)" style="width: 100%"><i class="fa fa-plus"></i></button>
+            </div>
+          </div>
+        </div>
+
+        <section id="no-more-tables" style="margin-top: 15px;">
+          <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th style="width: 5%">Letra</th>
+                <th>Opção</th>
+                <th style="width: 5%">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let ver of verdade.Opcoes; let j = index" [attr.data-index]="j">
+                <td data-title="Letra">{{retornaLetra(j)}}</td>
+                <td data-title="Nome">{{ver.descricao}}</td>
+                <td data-title="Ação">
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="removeOpcao(i)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="legenda" style="padding-top: 0px;">
+          <label class="control-label"><b>Legenda:</b></label> &nbsp;
+          <a class="btn btn-sm btn-danger">
+            <i class="fas fa-times"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Remover</label>
+        </div>
         <!-- botão de salvar -->
         <div class="row text-center">
           <button class="btn btn-theme btn-salvar" (click)="submit()">Salvar</button>
@@ -63,7 +146,7 @@
 </div>
 
 <!-- Tela verdade inicial -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaVerdade">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -78,7 +161,7 @@
       </div>
 
       <div class="row pesquisa_verdade">
-        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
+        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin-left: 10px;width: 98.5%;">
           <tr style="background-color:transparent; border: 0px;">
             <th style="border: 0px; width: 33%; padding-bottom:0px">
               <label style="margin:0px">Descrição:</label>
@@ -140,7 +223,7 @@
             </tbody>
           </table>
         </section>
-        
+
         <div class="legenda">
           <label class="control-label">Legenda:</label> &nbsp;
           <!-- item -->

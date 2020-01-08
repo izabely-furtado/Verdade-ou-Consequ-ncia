@@ -36,6 +36,7 @@ export class VerdadeComponent implements OnInit {
   visualizando: any = false;
   listaTipos: any = [];
   listaIdades: any = [];
+  listaSequencias: any = [];
   listaVerdades: any = [];
   element: HTMLImageElement;
 
@@ -60,8 +61,8 @@ export class VerdadeComponent implements OnInit {
   ngOnInit() {
     this.obterTipos();
     this.obterIdades()
+    this.obterSequencias();
     this.obterVerdades();
-
   }
 
   getFormatterDate(item) {
@@ -149,6 +150,24 @@ export class VerdadeComponent implements OnInit {
     );
   }
 
+  obterSequencias() {
+    this.loading = true;
+    this.apiService.Get("Sequencia").then(
+      result => {
+        this.listaSequencias = result;
+        this.loading = false;
+      },
+      err => {
+        this.loading = false;
+        Swal.fire({
+          type: 'error',
+          title: 'Oops...',
+          text: err.error.mensagem
+        });
+      }
+    );
+  }
+
   obterIdades() {
     this.listaIdades = [];
     this.listaIdades.push({ descricao: "Livre", id: 0 });
@@ -210,7 +229,7 @@ export class VerdadeComponent implements OnInit {
 
   remove(verdade) {
     this.loading = true;
-    this.apiService.Delete("Verdade", verdade.cpf + "?uuid=" + verdade.cpf).then(
+    this.apiService.Delete("Verdade", verdade.id).then(
       result => {
         this.ngOnInit();
         this.loading = false;
@@ -229,12 +248,9 @@ export class VerdadeComponent implements OnInit {
 
   obterVerdade(verdade) {
     this.loading = true;
-    this.apiService.GetOne("Verdade", verdade.cpf + "?uuid=" + verdade.cpf).then(
+    this.apiService.GetOne("Verdade", verdade.id).then(
       result => {
         this.verdade = result;
-        if (this.verdade != null && this.verdade.data_nascimento != null) {
-          this.verdade.data_nascimento_str = this.global.dateFormater(result['data_nascimento']);
-        }
         this.loading = false;
       },
       err => {
@@ -268,6 +284,72 @@ export class VerdadeComponent implements OnInit {
     if (idade == 18) { return "18+"; }
     if (idade == 21) { return "21+"; }
   }
-  
+
+  addTipo(tipo) {
+    if (tipo == null) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Selecione um tipo primeiro!'
+      });
+      return;
+    }
+    if (this.verdade.Tipos == null) {
+      this.verdade.Tipos = [];
+    }
+    this.verdade.Tipos.push(tipo);
+    this.verdade.tipo = {};
+  }
+
+  removeTipo(tipo_index) {
+    this.verdade.Tipos.splice(tipo_index, 1);
+  }
+
+  addOpcao(opcao) {
+    if (opcao == null) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Selecione uma opção primeiro!'
+      });
+      return;
+    }
+    if (this.verdade.Opcoes == null) {
+      this.verdade.Opcoes = [];
+    }
+    if (this.verdade.Opcoes.length >= 5) {
+      Swal.fire({
+        type: 'error',
+        title: 'Oops...',
+        text: 'Foi excedido o número máximo de opções!'
+      });
+      return;
+    }
+    opcao = opcao.toUpperCase();
+    this.verdade.Opcoes.push({ descricao: opcao });
+    this.verdade.opcao = "";
+  }
+
+  removeOpcao(opcao_index) {
+    this.verdade.Opcoes.splice(opcao_index, 1);
+  }
+
+  retornaLetra(index) {
+    if (index == 0) {
+      return 'A';
+    }
+    if (index == 1) {
+      return 'B';
+    }
+    if (index == 2) {
+      return 'C';
+    }
+    if (index == 3) {
+      return 'D';
+    }
+    if (index == 4) {
+      return 'E';
+    }
+  }
 
 }

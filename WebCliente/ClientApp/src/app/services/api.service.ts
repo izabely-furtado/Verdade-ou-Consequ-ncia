@@ -78,7 +78,7 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       this.http
         .put(
-          this.global.apiUrl + this.global.formatApiPath([path, data.uuid]),
+          this.global.apiUrl + this.global.formatApiPath([path, data.id]),
           JSON.stringify(data),
           {
             headers: new HttpHeaders()

@@ -17,7 +17,7 @@ namespace VerdadeConsequencia.Entities
             if (String.IsNullOrEmpty(this.descricao))
                 throw new ApplicationBadRequestException(ApplicationBadRequestException.DESCRICAO_INVALIDO);
 
-            if (this.tipo != 1 && this.tipo != 2 && this.tipo != 3)
+            if (this.tipo != 1 && this.tipo != 2 && this.tipo != 3 && this.tipo != 4)
                 throw new ApplicationBadRequestException(ApplicationBadRequestException.TIPO_INVALIDO);
         }
     }

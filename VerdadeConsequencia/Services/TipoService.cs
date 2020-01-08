@@ -26,7 +26,7 @@ namespace VerdadeConsequencia.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                return ctx.Tipos.ToList();
+                return ctx.Tipos.OrderBy(a => a.descricao).ToList();
             }
         }
 
@@ -58,11 +58,26 @@ namespace VerdadeConsequencia.Services
             }
         }
 
+        public static bool DeletarVerdadeConsequenciaTipo(int tipo_id)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                List<VerdadeConsequenciaTipo> vct = ctx.VerdadeConsequenciaTipos.Where(a => a.id_tipo == tipo_id).ToList();
+                foreach (var consequencia_tipo in vct)
+                {
+                    ctx.Remove(consequencia_tipo);
+                }
+                ctx.SaveChanges();
+                return true;
+            }
+        }
+
         public static Tipo Salvar(Tipo tipo_)
         {
             using (Repositorio ctx = new Repositorio())
             {
                 tipo_.Validar();
+                tipo_.descricao = tipo_.descricao.ToUpper();
                 RequisicaoHTTP requisicao = new RequisicaoHTTP();
                 ctx.Tipos.Add(tipo_);
                 ctx.SaveChanges();
@@ -90,13 +105,16 @@ namespace VerdadeConsequencia.Services
         {
             using (Repositorio ctx = new Repositorio())
             {
-                Tipo _endereco = ctx.Tipos
+                Tipo _tipo = ctx.Tipos
                     .Where(s => s.id == uuid).FirstOrDefault();
 
-                if (_endereco == null)
+                if (_tipo == null)
                     return true;
 
-                ctx.Remove(_endereco);
+                //desasociando todos as verdade e consequencias consequencias a este tipo
+                TipoService.DeletarVerdadeConsequenciaTipo(uuid);
+                
+                ctx.Remove(_tipo);
                 ctx.SaveChanges();
 
                 return true;

@@ -52,8 +52,19 @@ namespace VerdadeConsequencia.Services
             {
                 verdade_.Validar();
                 RequisicaoHTTP requisicao = new RequisicaoHTTP();
+               
+                //adicionando opçoes
                 ctx.Verdades.Add(verdade_);
                 ctx.SaveChanges();
+
+                //adicionando tipos
+                foreach (var tipo in verdade_.Tipos) {
+                    VerdadeConsequenciaTipo vct = new VerdadeConsequenciaTipo();
+                    vct.id_verdade = verdade_.id;
+                    vct.id_tipo = tipo.id;
+                    ctx.VerdadeConsequenciaTipos.Add(vct);
+                }
+
                 return verdade_;
             }
         }
@@ -64,7 +75,7 @@ namespace VerdadeConsequencia.Services
             {
                 Verdade _verdade = ctx.Verdades.Where(x => x.id == uuid).FirstOrDefault();
                 if (_verdade == null)
-                    throw new ApplicationNotFoundException(ApplicationNotFoundException.FUNCIONARIO_NAO_ENCONTRADO);
+                    throw new ApplicationNotFoundException(ApplicationNotFoundException.VERDADE_NAO_ENCONTRADA);
 
                 verdade.Validar();
                 _verdade.descricao = verdade.descricao.ToUpper();

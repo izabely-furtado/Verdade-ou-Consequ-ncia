@@ -1,5 +1,5 @@
 <!-- Tela alerta cadastro -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="novoAlerta">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -15,30 +15,24 @@
         <!-- nome e sobrenome -->
         <div class="row col-xs-12 col-lg-12">
           <div class="form-group col-xs-6">
-            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Nome</label>
-            <div class="col-lg-9">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Descrição:</label>
+            <div class="col-lg-12">
               <input [(ngModel)]="alerta.descricao" type="text" class="form-control" name="alerta_nome">
             </div>
           </div>
-          
-        </div>
-       
-        
-        <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
-          <div class="row col-sm-12">
-            
-            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
-              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Estado</label>
-              <div class="col-sm-9">
-                <select class="form-control col-6 col-sm-8" [(ngModel)]="alerta.tipo" id="alerta_tipo_id" name="alerta_tipo_id" required>
-                  <option disabled selected>Selecione..</option>
-                  <option *ngFor="let e of listaTipos" [ngValue]="e.id">
-                    {{e.descricao}}
-                  </option>
-                </select>
-              </div>
+
+          <div class="form-group col-xs-6">
+            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Tipo:</label>
+            <div class="col-lg-12">
+              <select class="form-control" [(ngModel)]="alerta.tipo" id="alerta_tipo_id" name="alerta_tipo_id" required>
+                <option disabled selected>Selecione..</option>
+                <option *ngFor="let e of listaTipos" [ngValue]="e.idz">
+                  {{e.descricao}}
+                </option>
+              </select>
             </div>
           </div>
+
         </div>
         
         <!-- botão de salvar -->
@@ -51,7 +45,7 @@
 </div>
 
 <!-- Tela alerta inicial -->
-<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novaPessoa">
+<div class="row mt" [ngClass]="{ 'redimensiona':global.isExpanded }" *ngIf="!novoAlerta">
   <div class="col-lg-12">
     <div class="white-panel form-panel">
       <div class="white-header" style="justify-content: space-between; display:flex">
@@ -66,7 +60,7 @@
       </div>
 
       <div class="row pesquisa_alerta">
-        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin:0px;">
+        <table class="table table-bordered table-striped table-condensed cf" style="border: 0px;margin-left: 10px;width: 98.5%;">
           <tr style="background-color:transparent; border: 0px;">
             <th style="border: 0px; width: 33%; padding-bottom:0px">
               <label style="margin:0px">Descrição:</label>
@@ -81,7 +75,7 @@
             </td>
             <td style="border: 0px; ">
               <select class="form-control" [(ngModel)]="filtro.tipo" id="filtro_tipo_id" name="filtro_tipo_id" required>
-                <option disabled selected>Selecione..</option>
+                <option selected [ngValue]="null">Selecione..</option>
                 <option *ngFor="let e of listaTipos" [ngValue]="e.id">
                   {{e.descricao}}
                 </option>
