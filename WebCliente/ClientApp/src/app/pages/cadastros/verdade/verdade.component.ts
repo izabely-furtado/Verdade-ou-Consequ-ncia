@@ -39,7 +39,7 @@ export class VerdadeComponent implements OnInit {
   listaSequencias: any = [];
   listaVerdades: any = [];
   element: HTMLImageElement;
-
+  
   currentUser: any = {};
 
   //partes de testes de funcionários
@@ -89,20 +89,29 @@ export class VerdadeComponent implements OnInit {
       });
       return false;
     }
-    if (pessoa.tipo == null || pessoa.tipo == 0) {
+    if (pessoa.Tipos == null || pessoa.Tipos.length == 0) {
       Swal.fire({
         type: 'error',
         title: 'Oops...',
-        text: 'Insira o tipo!'
+        text: 'Insira ao menos um tipo!'
       });
       return false;
     }
+    //inserindo letras
+    if (this.verdade.Opcoes != null) {
+      for (var i = 0; i < this.verdade.Opcoes.length; i++) {
+        this.verdade.Opcoes[i].letra = this.retornaLetra(i);
+      }
+    }
+    this.verdade.tipos = null;
+    this.verdade.opcoes = null;
     return true;
   }
 
-  edit(pessoa) {
+  edit(verdade) {
     this.novaVerdade = true;
-    this.obterVerdade(pessoa);
+    this.verdade = {};
+    this.obterVerdade(verdade);
     //this.verdade = pessoa;
     this.visualizando = false;
 
@@ -233,6 +242,11 @@ export class VerdadeComponent implements OnInit {
       result => {
         this.ngOnInit();
         this.loading = false;
+        Swal.fire({
+          type: 'success',
+          title: 'Sucesso!',
+          text: 'Verdade removida com sucesso!'
+        });
       },
       err => {
         this.loading = false;
@@ -251,6 +265,20 @@ export class VerdadeComponent implements OnInit {
     this.apiService.GetOne("Verdade", verdade.id).then(
       result => {
         this.verdade = result;
+        this.verdade.Tipos = this.verdade.tipos;
+        this.verdade.Opcoes = this.verdade.opcoes;
+        this.verdade.opcao = "";
+        if (this.verdade.sequencia != null) {
+          this.verdade.id_sequencia = this.verdade.sequencia.id;
+        }
+        this.verdade.descricao = this.verdade.descricao;
+        for (var i = 0; i < this.listaIdades.length; i++) {
+          debugger
+          if (this.listaIdades[i].id == this.verdade.idade) {
+            debugger
+            this.verdade.idade = this.listaIdades[i].id;
+          }
+        }
         this.loading = false;
       },
       err => {

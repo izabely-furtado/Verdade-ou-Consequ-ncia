@@ -16,7 +16,7 @@
           <div class="form-group col-xs-4">
             <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Descrição:</label>
             <div class="col-lg-12">
-              <input [(ngModel)]="verdade.descricao" type="text" class="form-control" name="alerta_nome">
+              <input [(ngModel)]="verdade.descricao" type="text" class="form-control" name="verdade_descricao">
             </div>
           </div>
 
@@ -35,7 +35,7 @@
           <div class="form-group col-xs-4">
             <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Sequencia:</label>
             <div class="col-lg-12">
-              <select class="form-control" [(ngModel)]="verdade.sequencia" id="verdade_idade_id" name="verdade_idade_id" required>
+              <select class="form-control" [(ngModel)]="verdade.id_sequencia" id="verdade_idade_id" name="verdade_idade_id" required>
                 <option disabled selected>Selecione..</option>
                 <option *ngFor="let e of listaSequencias" [ngValue]="e.id">
                   {{e.descricao}}
@@ -93,7 +93,7 @@
           <div class="row col-sm-12">
         
             <div class="form-group col-xs-11" style="padding-bottom: 0px; padding-top: 15px;">
-              <label class="control-label"><b style="color:#aa0028">*</b>Descrição:</label>
+              <label class="control-label"><b style="color:#aa0028">*</b>Opção:</label>
               <div class="col-lg-12">
                 <input [(ngModel)]="verdade.opcao" type="text" class="form-control" name="alerta_nome">
               </div>
@@ -212,10 +212,10 @@
                 <td data-title="Tipo"><div *ngFor="let tipo of verdad.tipos">{{tipo.descricao.toUpperCase()}}<span *ngIf="i < verdad.tipos.length -1"> | </span></div></td>
                 <td data-title="Idade">{{descIdade(verdad.idade)}}</td>
                 <td data-title="Ação">
-                  <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(verdade)">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(verdad)">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-sm btn-danger" title="Remover" (click)="remove(verdade)">
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="remove(verdad)">
                     <i class="fas fa-times"></i>
                   </button>
                 </td>

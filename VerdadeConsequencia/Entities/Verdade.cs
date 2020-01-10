@@ -22,6 +22,9 @@ namespace VerdadeConsequencia.Entities
         [NotMapped]
         public List<Tipo> Tipos { get; set; }
 
+        [NotMapped]
+        public List<Opcao> Opcoes { get; set; }
+
         public void Validar()
         {
             if (String.IsNullOrEmpty(this.descricao))

@@ -30,6 +30,14 @@ namespace VerdadeConsequencia.Services
             }
         }
 
+        public static List<Opcao> ListarPorVerdade(int id_verdade)
+        {
+            using (Repositorio ctx = new Repositorio())
+            {
+                return ctx.Opcoes.Where(a => a.id_verdade == id_verdade).OrderBy(l => l.letra).ToList();
+            }
+        }
+
         public static Opcao Salvar(Opcao verdade_)
         {
             using (Repositorio ctx = new Repositorio())
