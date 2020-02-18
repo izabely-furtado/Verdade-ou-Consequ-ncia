@@ -6,6 +6,6 @@
 
   },
   "apiServer": {
-    "apiUrl": "https://localhost:44377/v1/api/"
+    "apiUrl": "https://localhost:5001/v1/api/"
   }
 }

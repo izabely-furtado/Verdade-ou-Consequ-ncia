@@ -99,16 +99,16 @@ export class ConsequenciaComponent implements OnInit {
     return true;
   }
 
-  edit(pessoa) {
+  edit(consequencia) {
     this.novaConsequencia = true;
-    this.obterConsequencia(pessoa);
+    this.obterConsequencia(consequencia);
     //this.consequencia = pessoa;
     this.visualizando = false;
 
   }
 
-  view(pessoa) {
-    this.edit(pessoa);
+  view(consequencia) {
+    this.edit(consequencia);
     this.visualizando = true;
   }
 
@@ -136,6 +136,7 @@ export class ConsequenciaComponent implements OnInit {
     this.apiService.Get("Tipo").then(
       result => {
         this.listaTipos = result;
+        console.log(this.listaTipos);
         this.loading = false;
       },
       err => {
@@ -241,7 +242,7 @@ export class ConsequenciaComponent implements OnInit {
           title: 'Oops...',
           text: err.error.mensagem
         });
-      }
+      } 
     );
 
   }
@@ -250,13 +251,6 @@ export class ConsequenciaComponent implements OnInit {
     this.indice_selecionado = "";
     this.filtro = {};
   }
-
-  descTipo(tipo) {
-    if (tipo == 1) { return "Pulo"; }
-    if (tipo == 2) { return "21+"; }
-    if (tipo == 3) { return "Parabenização"; }
-  }
-
 
   descIdade(idade) {
     if (idade == 0) { return "Livre"; }

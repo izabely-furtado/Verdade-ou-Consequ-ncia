@@ -15,10 +15,22 @@
         <!-- nome e sobrenome -->
         <div class="row col-xs-12 col-lg-12">
           <div class="form-group col-xs-6">
-            <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Nome</label>
+            <label class="control-label"><b style="color:#aa0028">*</b>Nome</label>
             <div class="col-lg-9">
               <input [(ngModel)]="consequencia.descricao" type="text" class="form-control" name="consequencia_nome">
             </div>
+          </div>
+
+          <div class="form-group col-xs-6">
+            <label class="control-label"><b style="color:#aa0028">*</b>Idade</label>
+            <div class="col-lg-9">
+              <select class="form-control col-6 col-sm-8" [(ngModel)]="consequencia.idade" id="consequencia_idade_id" name="consequencia_idade_id" required>
+                <option disabled selected>Selecione..</option>
+                <option *ngFor="let e of listaIdades" [ngValue]="e.id">
+                  {{e.descricao}}
+                </option>
+              </select>
+             </div>
           </div>
           
         </div>
@@ -26,23 +38,10 @@
         
         <div class="white-header" style="justify-content: space-between; display:flex; margin-bottom: 0px;">
           <div class="row col-sm-12">
-            
-            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
-              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Estado</label>
-              <div class="col-sm-9">
-                <select class="form-control col-6 col-sm-8" [(ngModel)]="consequencia.idade" id="consequencia_idade_id" name="consequencia_idade_id" required>
-                  <option disabled selected>Selecione..</option>
-                  <option *ngFor="let e of listaIdades" [ngValue]="e.id">
-                    {{e.descricao}}
-                  </option>
-                </select>
-              </div>
-            </div>
-
-            <div class="form-group col-xs-6" style="padding-bottom: 0px; padding-top: 15px;">
-              <label class="acerta_w control-label"><b style="color:#aa0028">*</b>Estado</label>
-              <div class="col-sm-9">
-                <select class="form-control col-6 col-sm-8" [(ngModel)]="consequencia.tipo" id="consequencia_tipo_id" name="consequencia_tipo_id" required>
+            <div class="form-group col-xs-11" style="padding-bottom: 0px; padding-top: 15px;">
+              <label class="control-label"><b style="color:#aa0028">*</b>Tipo</label>
+              <div class="col-sm-12">
+                <select class="form-control col-9 col-sm-8" [(ngModel)]="consequencia.tipo" id="consequencia_tipo_id" name="consequencia_tipo_id" required>
                   <option disabled selected>Selecione..</option>
                   <option *ngFor="let e of listaTipos" [ngValue]="e.id">
                     {{e.descricao}}
@@ -50,9 +49,51 @@
                 </select>
               </div>
             </div>
+            <div class="form-group col-xs-1" style="padding-bottom: 0px; padding-top: 15px;">
+              <button class="btn btn-theme" type="button" (click)="addEndereco(endereco)" style="width: 100%"><i class="fa fa-plus"></i></button>
+            </div>
           </div>
         </div>
-        
+        <section id="no-more-tables" style="margin-top: 15px;">
+          <table class="table table-bordered table-striped table-condensed cf">
+            <thead class="cf">
+              <tr>
+                <th>Descricao</th>
+                <th style="width: 10%">Ação</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let tipo of consequencia.tipos; let i = index" [attr.data-index]="i">
+                <td data-title="Descrição">{{tipo.descricao}}</td>
+                <td data-title="Ação">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="editEndereco(tipo, i)">
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="removeEndereco(i)">
+                    <i class="fas fa-times"></i>
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <div class="legenda" style="padding-top: 0px;">
+          <label class="control-label"><b>Legenda:</b></label> &nbsp;
+          <!-- item -->
+          <a class="btn btn-sm btn-warning cancelaHover">
+            <i class="fas fa-edit"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Editar</label>
+          <!-- separador -->
+          &emsp;|&emsp;
+          <a class="btn btn-sm btn-danger">
+            <i class="fas fa-times"></i>
+          </a>
+          &nbsp;
+          <label class="control-label">Remover</label>
+        </div>
         <!-- botão de salvar -->
         <div class="row text-center">
           <button class="btn btn-theme btn-salvar" (click)="submit()">Salvar</button>
@@ -129,10 +170,10 @@
                 <td data-title="Tipo"><div *ngFor="let tipo of conseq.tipos; let i = index">{{tipo.descricao.toUpperCase()}}<span *ngIf="i < conseq.tipos.length -1"> | </span></div> </td>
                 <td data-title="Idade">{{descIdade(conseq.idade)}}</td>
                 <td data-title="Ação">
-                  <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(consequencia)">
+                  <button class="btn btn-sm btn-warning" title="Editar" (click)="edit(conseq)">
                     <i class="fas fa-edit"></i>
                   </button>
-                  <button class="btn btn-sm btn-danger" title="Remover" (click)="remove(consequencia)">
+                  <button class="btn btn-sm btn-danger" title="Remover" (click)="remove(conseq)">
                     <i class="fas fa-times"></i>
                   </button>
                 </td>
